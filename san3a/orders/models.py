@@ -15,7 +15,7 @@ class Order(TimeStampedModel):
     paid = models.BooleanField(default=False, verbose_name=_("Paid"))
 
     class Meta:
-        ordering = ('-created',)
+        ordering = ("-created",)
 
     def __str__(self):
         return self.first_name + " " + self.last_name
@@ -25,13 +25,17 @@ class Order(TimeStampedModel):
 
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, related_name='order_items', on_delete=models.CASCADE)
-    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name=_("Price"))
+    order = models.ForeignKey(Order, related_name="items", on_delete=models.CASCADE)
+    product = models.ForeignKey(
+        Product, related_name="order_items", on_delete=models.CASCADE
+    )
+    price = models.DecimalField(
+        max_digits=10, decimal_places=2, verbose_name=_("Price")
+    )
     quantity = models.PositiveIntegerField(default=1, verbose_name=_("Quantity"))
 
     def __str__(self):
-        return str(self.id)
+        return str(self.product.name)
 
     def get_cost(self):
         return self.price * self.quantity

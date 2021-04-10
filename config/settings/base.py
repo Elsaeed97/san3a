@@ -72,11 +72,11 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "corsheaders",
-
     "dj_rest_auth",
-    "dj_rest_auth.registration", 
+    "dj_rest_auth.registration",
     "taggit",
     "taggit_serializer",
+    "drf_yasg",
 ]
 
 LOCAL_APPS = [
