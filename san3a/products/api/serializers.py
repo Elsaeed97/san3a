@@ -9,7 +9,7 @@ class CategorySerialzer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        fields = ['id', 'name', 'slug', 'image', 'parent_category']
+        fields = ["id", "name", "slug", "image", "parent_category"]
 
 
 class ProductSerializer(TaggitSerializer, serializers.ModelSerializer):
@@ -20,7 +20,18 @@ class ProductSerializer(TaggitSerializer, serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        exclude = ['modified']
+        exclude = ["modified"]
+
+    def get_created(self, instance):
+        return instance.created.strftime("%B %d %Y")
+
+
+class ProductWriterSerializer(TaggitSerializer, serializers.ModelSerializer):
+    tags = TagListSerializerField()
+
+    class Meta:
+        model = Product
+        exclude = ["modified"]
 
     def get_created(self, instance):
         return instance.created.strftime("%B %d %Y")
