@@ -10,11 +10,7 @@ from django.urls import reverse
 from san3a.users.forms import UserChangeForm
 from san3a.users.models import User
 from san3a.users.tests.factories import UserFactory
-from san3a.users.views import (
-    UserRedirectView,
-    UserUpdateView,
-    user_detail_view,
-)
+from san3a.users.views import UserRedirectView, UserUpdateView, user_detail_view
 
 pytestmark = pytest.mark.django_db
 
