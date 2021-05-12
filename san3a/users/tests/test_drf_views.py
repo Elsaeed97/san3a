@@ -1,7 +1,8 @@
 import pytest
 from django.test import RequestFactory
-from zekra.users.api.views import UserViewSet
-from zekra.users.models import User
+
+from san3a.users.api.views import UserViewSet
+from san3a.users.models import User
 
 pytestmark = pytest.mark.django_db
 
