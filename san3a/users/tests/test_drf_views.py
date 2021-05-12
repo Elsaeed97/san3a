@@ -1,8 +1,7 @@
 import pytest
 from django.test import RequestFactory
-
-from san3a.users.api.views import UserViewSet
-from san3a.users.models import User
+from zekra.users.api.views import UserViewSet
+from zekra.users.models import User
 
 pytestmark = pytest.mark.django_db
 
@@ -28,5 +27,6 @@ class TestUserViewSet:
 
         assert response.data == {
             "username": user.username,
+            "first_name": user.first_name,
             "url": f"http://testserver/api/users/{user.username}/",
         }
