@@ -62,7 +62,6 @@ services:
     image: san3a_production_flower
     command: /start-flower
 
-  
   awscli:
     build:
       context: .
