@@ -84,7 +84,6 @@ LOCAL_APPS = [
     # Your stuff: custom apps go here
     "san3a.products.apps.ProductsConfig",
     "san3a.orders.apps.OrdersConfig",
-    "san3a.pages.apps.PagesConfig",
     "san3a.tutorials.apps.TutorialsConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

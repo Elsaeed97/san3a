@@ -7,7 +7,15 @@ User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["username", "url"]
+        fields = [
+            "id",
+            "username",
+            "email",
+            "url",
+            "user_type",
+            "first_name",
+            "last_name",
+        ]
 
         extra_kwargs = {
             "url": {"view_name": "api:user-detail", "lookup_field": "username"}

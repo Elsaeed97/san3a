@@ -25,7 +25,6 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
-    # path("", include("san3a.pages.urls", namespace="pages")),
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),
