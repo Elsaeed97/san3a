@@ -10,4 +10,6 @@ sentry-sdk==0.20.3  # https://github.com/getsentry/sentry-python
 # Django
 # ------------------------------------------------------------------------------
 django-storages[boto3]==1.11.1  # https://github.com/jschneier/django-storages
+django-storages[azure]==1.11.1
 django-anymail[amazon_ses]==8.2  # https://github.com/anymail/django-anymail
+whitenoise==5.2.0 #http://whitenoise.evans.io/en/stable/

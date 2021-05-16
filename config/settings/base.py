@@ -77,6 +77,7 @@ THIRD_PARTY_APPS = [
     "taggit",
     "taggit_serializer",
     "drf_yasg",
+    # "whitenoise.runserver_nostatic",
 ]
 
 LOCAL_APPS = [
@@ -135,6 +136,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    # "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",

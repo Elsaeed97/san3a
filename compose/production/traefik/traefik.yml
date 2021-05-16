@@ -31,7 +31,7 @@ certificatesResolvers:
 http:
   routers:
     web-secure-router:
-      rule: "Host(`san3a.com`) || Host(`www.san3a.com`)"
+      rule: "Host(`san3a.codes`) || Host(`www.san3a.codes`)"
 
       entryPoints:
         - web-secure
