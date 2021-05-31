@@ -1,11 +1,16 @@
 from django.contrib import admin
 
-from .models import Order, OrderItem
+from .models import Cart, CartItem, Order
 
 
-class OrderItemInline(admin.TabularInline):
-    model = OrderItem
-    raw_id_fields = ["product"]
+@admin.register(Cart)
+class CartAdmin(admin.ModelAdmin):
+    list_display = ["id", "owner", "get_cart_items", "date_ordered", "get_total_cost"]
+
+
+@admin.register(CartItem)
+class CartItemAdmin(admin.ModelAdmin):
+    list_display = ["id", "product", "quantity", "get_cost"]
 
 
 @admin.register(Order)
@@ -15,11 +20,9 @@ class OrderAdmin(admin.ModelAdmin):
         "first_name",
         "last_name",
         "email",
-        "address",
-        "postal_code",
         "city",
+        "postal_code",
         "paid",
-        "created",
+        "get_total_cost",
     ]
-    list_filter = ["paid", "created", "modified"]
-    inlines = [OrderItemInline]
+    list_editable = ["paid"]

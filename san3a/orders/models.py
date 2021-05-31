@@ -1,11 +1,42 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from model_utils.models import TimeStampedModel
 
 from san3a.products.models import Product
 
+User = get_user_model()
+
+
+class CartItem(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+
+    def get_cost(self):
+        return self.product.price * self.quantity
+
+    def __str__(self):
+        return self.product.name
+
+
+class Cart(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    items = models.ManyToManyField(CartItem)
+    date_ordered = models.DateTimeField(auto_now=True)
+
+    def get_cart_items(self):
+        return self.items.all()
+
+    def get_total_cost(self):
+        return sum(item.get_cost() for item in self.items.all())
+
+    def __str__(self):
+        return self.owner.username
+
 
 class Order(TimeStampedModel):
+    cart_items = models.ManyToManyField(CartItem)
+    owner = models.ForeignKey(User, verbose_name=_("Owner"), on_delete=models.CASCADE)
     first_name = models.CharField(max_length=25, verbose_name=_("First Name"))
     last_name = models.CharField(max_length=25, verbose_name=_("Last Name"))
     email = models.EmailField(verbose_name=_("Email"))
@@ -21,21 +52,4 @@ class Order(TimeStampedModel):
         return self.first_name + " " + self.last_name
 
     def get_total_cost(self):
-        return sum(item.get_cost() for item in self.items.all())
-
-
-class OrderItem(models.Model):
-    order = models.ForeignKey(Order, related_name="items", on_delete=models.CASCADE)
-    product = models.ForeignKey(
-        Product, related_name="order_items", on_delete=models.CASCADE
-    )
-    price = models.DecimalField(
-        max_digits=10, decimal_places=2, verbose_name=_("Price")
-    )
-    quantity = models.PositiveIntegerField(default=1, verbose_name=_("Quantity"))
-
-    def __str__(self):
-        return str(self.product.name)
-
-    def get_cost(self):
-        return self.price * self.quantity
+        return sum(item.get_cost() for item in self.cart_items.all())

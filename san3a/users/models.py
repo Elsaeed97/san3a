@@ -9,7 +9,10 @@ class User(AbstractUser):
     """Default user for San3a Hand Maid."""
 
     STATUSES = Choices(("client", _("Client")), ("seller", _("Seller")))
-    user_type = models.CharField(choices=STATUSES, max_length=15)
+    user_type = models.CharField(
+        choices=STATUSES, max_length=15, default=STATUSES.client
+    )
+    avatar = models.ImageField(_("Avatar"), upload_to="avatars/", default="user.png")
 
     def get_absolute_url(self):
         """Get url for user's detail view.

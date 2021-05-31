@@ -5,4 +5,4 @@ from .models import Tutorial
 
 @admin.register(Tutorial)
 class TutorialAdmin(admin.ModelAdmin):
-    list_display = ["id", "title", "author", "created", "video"]
+    list_display = ["id", "title", "author", "created", "video_url"]

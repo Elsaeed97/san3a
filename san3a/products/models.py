@@ -35,6 +35,13 @@ class Category(models.Model):
         super(Category, self).save(*args, **kwargs)
 
 
+class Color(models.Model):
+    color = models.CharField(_("Color"), max_length=50)
+
+    def __str__(self):
+        return self.color
+
+
 class Product(TimeStampedModel):
     owner = models.ForeignKey(
         get_user_model(),
@@ -42,6 +49,7 @@ class Product(TimeStampedModel):
         on_delete=models.CASCADE,
         verbose_name=_("Product Owner"),
     )
+    color = models.ForeignKey(Color, verbose_name=_("Color"), on_delete=models.CASCADE)
     name = models.CharField(max_length=30, verbose_name=_("Product Name"))
     image = models.ImageField(upload_to="product/", verbose_name=_("Image"))
     slug = models.SlugField()

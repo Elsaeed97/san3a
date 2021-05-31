@@ -13,7 +13,7 @@ class TutorialSerializer(serializers.ModelSerializer):
             "title",
             "author",
             "description",
-            "video",
+            "video_url",
             "created",
             "modified",
         ]
@@ -27,7 +27,7 @@ class TutorialSerializerWriter(serializers.ModelSerializer):
             "title",
             "author",
             "description",
-            "video",
+            "video_url",
             "created",
             "modified",
         ]

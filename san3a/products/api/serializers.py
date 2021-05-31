@@ -17,6 +17,7 @@ class ProductSerializer(TaggitSerializer, serializers.ModelSerializer):
     owner = serializers.StringRelatedField(read_only=True)
     created = serializers.SerializerMethodField()
     tags = TagListSerializerField()
+    color = serializers.StringRelatedField()
 
     class Meta:
         model = Product
